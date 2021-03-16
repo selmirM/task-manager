@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardScv: DashboardService) { }
 
   Designation: string = "";
   Username: string = "";
@@ -48,12 +49,7 @@ export class DashboardComponent implements OnInit {
       this.Years.push(i);
     }
 
-    this.TeamMembersSummary = [
-      { Region: "East", TeamMembersCount: 20, temporarilyUnvailableMembers: 4 },
-      { Region: "South", TeamMembersCount: 15, temporarilyUnvailableMembers: 8 },
-      { Region: "West", TeamMembersCount: 17, temporarilyUnvailableMembers: 1 },
-      { Region: "North", TeamMembersCount: 15, temporarilyUnvailableMembers: 6 }
-    ];
+    this.TeamMembersSummary = this.dashboardScv.getTeamMembersSummary();
 
     this.TeamMembers = [
       {
