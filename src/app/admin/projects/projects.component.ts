@@ -10,10 +10,15 @@ import { ProjectsService } from 'src/app/projects.service';
 export class ProjectsComponent implements OnInit {
 projects: Project[] = [];
 newProject: Project = new Project();
+tempProject: Project = new Project();
+tempProject2: Project = new Project();
+currentProject: Project = new Project();
+currentIndex: number;
 
   constructor(private projectsScv:ProjectsService) { }
 
   ngOnInit() {
+    this.projects.push(...[this.tempProject, this.tempProject2]);
     this.projectsScv.getAllProjects().subscribe(res => {
       this.projects = res;
     });
@@ -21,8 +26,14 @@ newProject: Project = new Project();
 
   onSave() {
     this.projectsScv.insertProject(this.newProject).subscribe((response => {
-      this.newProject = response;
-      this.projects.push(this.newProject);
+      let p:Project = new Project();
+      p.projectID = response.projectID;
+      p.projectName = response.projectName;
+      p.dateOfStart = response.dateOfStart;
+      p.teamSize = response.teamSize;
+      this.projects.push(p);
+
+      //Clear New Project Grid
       this.newProject.projectID = null;
       this.newProject.projectName = null;
       this.newProject.dateOfStart = null;
@@ -30,6 +41,57 @@ newProject: Project = new Project();
     } ), (error => {
       console.log(error);
     }));
+  }
+
+  onEdit(projectIndex) {
+    this.currentIndex = projectIndex;
+    this.currentProject.projectID = this.projects[projectIndex].projectID;
+    this.currentProject.projectName = this.projects[projectIndex].projectName;
+    this.currentProject.dateOfStart = this.projects[projectIndex].dateOfStart;
+    this.currentProject.teamSize = this.projects[projectIndex].teamSize;
+
+  }
+
+  onUpdate() {
+    console.log('Current Project', this.currentProject);
+    this.projectsScv.updateProject(this.currentProject).subscribe(
+    (response)=> {
+      let p = new Project();
+      p.projectID = response.projectID;
+      p.projectName = response.projectName;
+      p.dateOfStart = response.dateOfStart;
+      p.teamSize = response.teamSize;
+      this.projects[this.currentIndex] = p;
+
+      // Clear update grid
+      this.currentProject.projectID =  null;
+      this.currentProject.projectName =  null;
+      this.currentProject.dateOfStart =  null;
+      this.currentProject.teamSize = null;
+    }, 
+    
+    (error)=> {
+      console.log(error);
+    });
+  }
+
+  onRemoveClick(projectIndex) {
+    this.currentIndex = projectIndex;
+    this.currentProject.projectID = this.projects[projectIndex].projectID;
+    this.currentProject.projectName = this.projects[projectIndex].projectName;
+  }
+
+  onRemove() {
+    console.log("onRmv");
+    this.projectsScv.deleteProject(this.projects[this.currentIndex].projectID).subscribe(
+    (response) => {
+      console.log('Response', response);
+    },
+    (error) => {
+      console.log(error);
+    });
+
+    this.projects.splice(this.currentIndex, 1)
   }
 
 }
