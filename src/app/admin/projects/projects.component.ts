@@ -14,6 +14,8 @@ tempProject: Project = new Project();
 tempProject2: Project = new Project();
 currentProject: Project = new Project();
 currentIndex: number;
+searchBy: string = "ProjectID";
+searchText: string = "";
 
   constructor(private projectsScv:ProjectsService) { }
 
@@ -53,7 +55,6 @@ currentIndex: number;
   }
 
   onUpdate() {
-    console.log('Current Project', this.currentProject);
     this.projectsScv.updateProject(this.currentProject).subscribe(
     (response)=> {
       let p = new Project();
@@ -82,7 +83,6 @@ currentIndex: number;
   }
 
   onRemove() {
-    console.log("onRmv");
     this.projectsScv.deleteProject(this.projects[this.currentIndex].projectID).subscribe(
     (response) => {
       console.log('Response', response);
@@ -92,6 +92,13 @@ currentIndex: number;
     });
 
     this.projects.splice(this.currentIndex, 1)
+  }
+
+  onSearch() {
+    this.projectsScv.searchProject(this.searchBy, this.searchText).subscribe(
+      (response: Project[]) => {this.projects = response;}, 
+      (err)=> { console.log("Error:", err) }
+      );
   }
 
 }

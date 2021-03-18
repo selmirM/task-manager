@@ -1,6 +1,31 @@
 <h1>Projects</h1>
 <div class="row">
     <div class="col-8 mx-auto">
+        <div class="form-group row">
+            <label for="txtSearchByProject" class="col-sm-3 col-form-label">Search by: </label>
+            <div class="col-sm-9">
+                <select name="searchby" id="txtSearchByProject" class="form-control" [(ngModel)]="searchBy">
+                    <option value="ProjectID"> Project ID</option>
+                    <option value="ProjectName"> Project Name</option>
+                    <option value="DateOfStart">Date Of Start</option>
+                    <option value="TeamSize">Team Size</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="txtSearchTextProject" class="col-sm-3 col-form-label">Search Text: </label>
+            <div class="col-sm-9">
+                <div class="input-group mb-3">
+                    <input type="text" name="searchtext" id="txtSearchTextProject" class="form-control" [(ngModel)]="searchText" placeholder="Enter search text">
+                    <div class="input-group-append">
+                    <span class="input-group-text" (click)="onSearch()"><span class="fa fa-search"></span></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-8 mx-auto">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#newModal">
             Create Project
@@ -44,7 +69,7 @@
                     <label for="txtNewProjectID" class="col-sm-3 col-form-label">ProjectID</label>
                     <div class="col-sm-9">
                         <input type="text" id="txtNewProjectID" style="width: 150px;" class="form-control" placeholder="Project ID"
-                        name="ProjectID" [(ngModel)]="newProject.projectID" disabled>
+                        name="ProjectID" [(ngModel)]="newProject.projectID">
                     </div>
                 </div>
                 <div class="form-group row">

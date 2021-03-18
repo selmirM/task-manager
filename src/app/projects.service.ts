@@ -29,5 +29,15 @@ export class ProjectsService {
 
     return this.httpClient.delete<Project>("/api/projects", options);
   }
+
+  searchProject(searchBy: string, searchText: string): Observable<Project[]> {
+    var httpParams = new HttpParams()
+    .set('searchby', searchBy)
+    .set("searchtext", searchText);
+
+    let options = {params: httpParams}
+
+    return this.httpClient.get<Project[]>("api/projects/search", options)
+  }
   
 }
