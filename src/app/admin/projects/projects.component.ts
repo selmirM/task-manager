@@ -10,8 +10,8 @@ import { ProjectsService } from 'src/app/projects.service';
 export class ProjectsComponent implements OnInit {
 projects: Project[] = [];
 newProject: Project = new Project();
-tempProject: Project = new Project();
-tempProject2: Project = new Project();
+// tempProject: Project = new Project();
+// tempProject2: Project = new Project();
 currentProject: Project = new Project();
 currentIndex: number;
 searchBy: string = "ProjectID";
@@ -20,8 +20,9 @@ searchText: string = "";
   constructor(private projectsScv:ProjectsService) { }
 
   ngOnInit() {
-    this.projects.push(...[this.tempProject, this.tempProject2]);
-    this.projectsScv.getAllProjects().subscribe(res => {
+    //this.projects.push(...[this.tempProject, this.tempProject2]);
+    this.projectsScv.getAllProjects().subscribe(
+    res => {
       this.projects = res;
     });
   }
