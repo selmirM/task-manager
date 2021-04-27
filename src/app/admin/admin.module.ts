@@ -4,18 +4,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
 
 // Services
-import { DashboardService } from '../dashboard.service';
+import { DashboardService } from '../services/dashboard.service';
 
 // Components
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AboutComponent } from './about/about.component';
+
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [    
     DashboardComponent,
-    AboutComponent,
     MyProfileComponent,
     ProjectsComponent],
   imports: [
@@ -23,7 +22,7 @@ import { ProjectsComponent } from './projects/projects.component';
     FormsModule
   ],
   exports: [
-    DashboardComponent, MyProfileComponent, AboutComponent
+    DashboardComponent, MyProfileComponent
   ],
   providers: [DashboardService]
 })

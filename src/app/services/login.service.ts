@@ -1,7 +1,7 @@
 import { HttpBackend, HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginViewModel } from './login-view-model';
+import { LoginViewModel } from '../models/login-view-model';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ClientLocation } from 'src/app/client-location';
-import { ClientLocationsService } from 'src/app/client-locations.service';
-import { Project } from 'src/app/project';
-import { ProjectsService } from 'src/app/projects.service';
+import { ClientLocation } from 'src/app/models/client-location';
+import { ClientLocationsService } from 'src/app/services/client-locations.service';
+import { Project } from 'src/app/models/project';
+import { ProjectsService } from 'src/app/services/projects.service';
 import  * as $ from 'jquery';
 
 @Component({

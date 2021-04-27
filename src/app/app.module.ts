@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import {HttpClientModule, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-interceptor.service';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { JwtUnAuthorizedInterceptorService } from './services/jwt-un-authorized-interceptor.service';
 import { TeamSizeValidatorDirective } from './team-size-validator.directive';
 
 
