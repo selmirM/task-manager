@@ -11,30 +11,10 @@ export class ProjectsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    // let currentUser = { token: "" };
-    // var headers = new HttpHeaders();
-    // headers.set("Authorization", "Bearer");
-    // console.log('storageUser',sessionStorage.currentUser);
-    // console.log('storage',sessionStorage);
-
-    // if (sessionStorage.currentUser != null) {
-    //   currentUser = JSON.parse(sessionStorage.currentUser);
-    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    // }
-
     return this.httpClient.get<Project[]>("/api/projects")
   }
 
   insertProject(newProject: Project): Observable<Project> {
-    // let currentUser = { token: "" };
-    // var headers = new HttpHeaders();
-    // headers.set("Authorization", "Bearer");
-
-    // if (sessionStorage.currentUser != null) {
-    //   currentUser = JSON.parse(sessionStorage.currentUser);
-    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    // }
-
     return this.httpClient.post<Project>("/api/projects", newProject);
   }
 

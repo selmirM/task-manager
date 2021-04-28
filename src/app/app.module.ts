@@ -10,12 +10,14 @@ import {HttpClientModule, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptorService } from './jwt-interceptor.service';
 import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-interceptor.service';
+import { TeamSizeValidatorDirective } from './team-size-validator.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    TeamSizeValidatorDirective
   ],
   imports: [
     BrowserModule,
